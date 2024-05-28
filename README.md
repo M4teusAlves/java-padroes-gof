@@ -32,7 +32,6 @@ PetService service = new BasicService(); // Criando Serviço básico
 // Adicionando serviços de grooming e treinamento
 PetService serviceWithGrooming = new GroomingDecorator(service); // Adicionando tosa ao serviço
 PetService serviceWithTraining = new TrainingDecorator(service); // Adicionando treinamento ao serviço
-PetService serviceWithGroomingAndTraining = new TrainingDecorator(new GroomingDecorator(service)); // Adicionando treinamento e tosa ao serviço
 ```
 
 # UML
