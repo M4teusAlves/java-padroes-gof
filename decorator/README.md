@@ -1,18 +1,39 @@
-## Getting Started
+# Padrão Decorator: PetShop
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+O padrão Decorator é um padrão de design estrutural que permite adicionar comportamentos a objetos individuais de forma dinâmica e transparente, sem afetar outros objetos da mesma classe. Neste exemplo, vamos explorar como o padrão Decorator pode ser aplicado em um sistema de PetShop em Java.
 
-## Folder Structure
+## Estrutura do Projeto
 
-The workspace contains two folders by default, where:
+O projeto é composto pelos seguintes elementos:
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+- `PetService`: Interface que define o serviço básico oferecido pelo PetShop.
+- `BasicService`: Implementação concreta da interface `PetService`, representando o serviço básico oferecido pelo PetShop.
+- `PetServiceDecorator`: Classe abstrata que estende `PetService` e atua como a base para os decoradores.
+- `GroomingDecorator` e `TrainingDecorator`: Decoradores concretos que estendem `PetServiceDecorator` e adicionam funcionalidades específicas de grooming (tosa) e treinamento, respectivamente.
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+## Uso do Padrão Decorator
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+O padrão Decorator é útil quando queremos adicionar funcionalidades extras a objetos existentes sem modificar sua estrutura. No contexto do PetShop, isso pode ser aplicado da seguinte forma:
 
-## Dependency Management
+1. **Criando um serviço básico**: Começamos definindo a interface `PetService` e sua implementação básica `BasicService`, que oferece os serviços essenciais do PetShop.
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+2. **Criando decoradores**: Em seguida, definimos a classe abstrata `PetServiceDecorator`, que estende `PetService`, e os decoradores concretos `GroomingDecorator` e `TrainingDecorator`, que adicionam funcionalidades de grooming e treinamento, respectivamente.
+
+3. **Compondo serviços**: Podemos compor diferentes serviços usando os decoradores. Por exemplo, podemos ter um serviço que combina o serviço básico com serviços de grooming e treinamento adicionais.
+
+4. **Chamando os serviços**: Os clientes do PetShop podem solicitar serviços diretamente do `PetService` básico ou de qualquer combinação de decoradores adicionados.
+
+## Exemplo de Uso
+
+```java
+// Criando um serviço básico
+PetService service = new BasicService(); // Criando Serviço básico
+
+// Adicionando serviços de grooming e treinamento
+PetService serviceWithGrooming = new GroomingDecorator(service); // Adicionando tosa ao serviço
+PetService serviceWithTraining = new TrainingDecorator(service); // Adicionando treinamento ao serviço
+```
+
+# UML
+
+![UML - Decorator - GoF](https://raw.githubusercontent.com/M4teusAlves/java-padroes-gof/main/decorator/UML/UML%20-%20Decorator%20-%20GoF.png)
